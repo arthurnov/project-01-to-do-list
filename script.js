@@ -29,8 +29,7 @@ function addNote(e) {
         if (item.nodeName === "BUTTON") continue;
         note[item.name] = item.value;
     }
-    addNoteToList(note, "to-do");
-    drawSection("to-do");
+    addNoteToList(note, "to-do")
     clearForm();
 }
 
@@ -56,13 +55,13 @@ function drawSection(section) {
     for (let i = 0; i < list.length; i++) {
         notes += `<div class="container note"><div class="note-content">`;
         for (const key in list[i]) {
-            notes += `${key}: ${list[i][key]}<br>`;
+            notes += `${key}: ${(list[i][key]).replaceAll('\n', '<br>')}<br>`;
         }
         const nextButtonButton = (section === "completed") ? "" : `<button onclick="move('${section}', ${i}, '${nextList}')">${nextButtonText}</button>`;
         notes += `
             </div>
             <div class="note-actions">
-                <button onclick="deleteNoteFromList('${i}', '${section}')">delete</button>
+                <button class="delete-button" onclick="deleteNoteFromList('${i}', '${section}')">delete</button>
                 ${nextButtonButton}
             </div>
         </div>`;
