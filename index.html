@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>your to-do's</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/images/cs-icon.svg" type="image/x-icon">
+    <script defer src="script.js"></script>
+</head>
+
+<body onload="buildBoard()">
+    <div id="wrapper">
+        <h1>to-do</h1>
+        <section id="input-section" class="container">
+            <form onsubmit="addNote(event)" id="main-form">
+                <label for="note-input-field">task: </label>
+                <textarea rows="4" cols="50" id="note-input-field" name="note" required></textarea>
+                <label for="date-input-field">due by: </label>
+                <input type="datetime-local" id="date-input-field" name="due date" required>
+                <button type="submit" name="Submit">add</button>
+            </form>
+        </section>
+        <section id="to-do-section" class="container note-sections">
+            <h2>to-do</h2>
+            <div id="to-do-div" class="note-divs"></div>
+        </section>
+        <section id="in-progress-section" class="container note-sections">
+            <h2>in-progress</h2>
+            <div id="in-progress-div" class="note-divs"></div>
+        </section>
+        <section id="completed-section" class="container note-sections">
+            <h2>completed</h2>
+            <div id="completed-div" class="note-divs"></div>
+        </section>
+    </div>
+</body>
+
+</html>
