@@ -27,6 +27,10 @@ function addNote(e) {
     let note = {};
     for (const item of e.target) {
         if (item.nodeName === "BUTTON") continue;
+        if (item.name === "due date") {
+            note[item.name] = new Date(item.value).toUTCString();
+            continue;
+        }
         note[item.name] = item.value;
     }
     addNoteToList(note, "to-do")
@@ -55,13 +59,19 @@ function drawSection(section) {
     for (let i = 0; i < list.length; i++) {
         notes += `<div class="container note"><div class="note-content">`;
         for (const key in list[i]) {
+            console.log(typeof (list[i]["due date"]));
+            // if (key === "date-input-field") {
+            //     (list[i][key]).toUTCString()
+            //     notes += `<span class="note-due-date">due by ${list[i][key].toUTCString()}</span>`;
+            //     continue;
+            // }
             notes += `${key}: ${(list[i][key]).replaceAll('\n', '<br>')}<br>`;
         }
         const nextButtonButton = (section === "completed") ? "" : `<button onclick="move('${section}', ${i}, '${nextList}')">${nextButtonText}</button>`;
         notes += `
             </div>
             <div class="note-actions">
-                <button class="delete-button" onclick="deleteNoteFromList('${i}', '${section}')">delete</button>
+                <button class="delete-button" onclick="deleteNoteFromList('${i}', '${section}')">X</button>
                 ${nextButtonButton}
             </div>
         </div>`;
@@ -103,22 +113,3 @@ function clearForm() {
     allInputs.forEach(singleInput => singleInput.value = '');
     allInputs[0].focus();
 }
-
-// ----- visual flare for "notes" when dragged -----
-
-// function handleDragStart(e) {
-//     this.style.opacity = '0.4';
-// }
-
-// function handleDragEnd(e) {
-//     this.style.opacity = '1';
-// }
-
-// function addEventsToNotes() {
-//     let items = document.querySelectorAll('.container .note');
-//     items.forEach(function (item) {
-//         item.addEventListener('dragstart', handleDragStart);
-//         item.addEventListener('dragend', handleDragEnd);
-//     });
-// }
-
