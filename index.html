@@ -18,7 +18,10 @@
                 <label for="note-input-field">task: </label>
                 <textarea rows="7" id="note-input-field" name="note" required></textarea>
                 <label for="date-input-field">due by: </label>
-                <input type="datetime-local" id="date-input-field" name="due date" required>
+                <div id="date-time">
+                    <input type="date" id="date-input-field" name="due date" required>
+                    <input type="time" id="time-input-field" name="due o'clock" required>
+                </div>
                 <button type="submit" name="Submit">add</span></button>
             </form>
         </section>

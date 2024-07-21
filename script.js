@@ -27,10 +27,11 @@ function addNote(e) {
     let note = {};
     for (const item of e.target) {
         if (item.nodeName === "BUTTON") continue;
-        if (item.name === "due date") {
-            note[item.name] = new Date(item.value).toUTCString();
-            continue;
-        }
+        // if (item.name === "due date") {
+        //     console.log(item.value);
+        //     note[item.name] = new Date(item.value);
+        //     continue;
+        // }
         note[item.name] = item.value;
     }
     addNoteToList(note, "to-do")
@@ -59,13 +60,15 @@ function drawSection(section) {
     for (let i = 0; i < list.length; i++) {
         notes += `<div class="container note"><div class="note-content">`;
         for (const key in list[i]) {
-            console.log(typeof (list[i]["due date"]));
-            // if (key === "date-input-field") {
-            //     (list[i][key]).toUTCString()
-            //     notes += `<span class="note-due-date">due by ${list[i][key].toUTCString()}</span>`;
-            //     continue;
-            // }
-            notes += `${key}: ${(list[i][key]).replaceAll('\n', '<br>')}<br>`;
+            if (key === "due date") {
+                notes += `<span id="note-due-txt">due<br>by</span><span id="note-due-date">${list[i][key]}</span>`;
+                continue;
+            } else if (key === "due o'clock") {
+                notes += `<span id="note-due-time">${list[i][key]}</span>`;
+                continue;
+            } else {
+                notes += `${(list[i][key]).replaceAll('\n', '<br>')}<br>`;
+            }
         }
         const nextButtonButton = (section === "completed") ? "" : `<button onclick="move('${section}', ${i}, '${nextList}')">${nextButtonText}</button>`;
         notes += `

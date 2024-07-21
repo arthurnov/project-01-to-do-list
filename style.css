@@ -91,6 +91,7 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    min-height: 32px;
     height: 32px;
     gap: 5px;
 }
@@ -149,16 +150,60 @@ button:hover {
         margin-top: 5px;
         box-shadow: 3px 3px darkgray;
     }
+
     button:hover {
         translate: -1px -1px;
         box-shadow: 4px 4px darkgrey;
     }
 
-    textarea,
-    input {
+    textarea {
         box-shadow: 3px 3px darkgray;
         border: 1px solid grey;
         margin: 5px 0px 5px 0px;
         width: 250px;
     }
+}
+
+#date-time {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+
+    input {
+        box-shadow: 3px 3px darkgray;
+        border: 1px solid grey;
+        margin: 5px 0px 5px 0px;
+    }
+
+    #date-input-field {
+        width: 60%;
+    }
+
+    #time-input-field {
+        width: 40%;
+    }
+}
+
+#note-due-txt {
+    position: absolute;
+    font-size: xx-small;
+    font-weight: bold;
+    text-align: right;
+    /* margin: 0px;
+    padding: 0px; */
+    bottom: 6px;
+    left: 10px;
+}
+
+#note-due-date {
+    position: absolute;
+    bottom: 14px;
+    left: 30px;
+}
+
+#note-due-time {
+    position: absolute;
+    bottom: 2px;
+    left: 30px;
 }
