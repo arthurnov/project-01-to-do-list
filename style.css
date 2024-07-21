@@ -9,14 +9,15 @@ body {
 }
 
 section {
-    box-shadow: 5px 5px darkgrey;
+    box-shadow: 4px 4px darkgrey;
 }
 
 #wrapper {
     display: grid;
     box-sizing: border-box;
-    grid-template-columns: auto auto auto;
-    margin: 20px 50px;
+    /* couldn't figure out another way for equal distribution */
+    grid-template-columns: 33.3% 33.4% 33.3%;
+    margin: 0px 50px 20px 50px;
     width: auto;
 }
 
@@ -29,11 +30,15 @@ section {
 }
 
 #input-section {
-    grid-column: span 3;
+    grid-column: span 1;
+    width: fit-content;
 }
 
 .note-sections {
+    /* change 'span' to '1' for more of a trello like layout */
     grid-column: span 3;
+    padding-bottom: 20px;
+    min-width: 278px;
 }
 
 .note-divs {
@@ -41,6 +46,7 @@ section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    /* change 'justify-content' to 'center' for more of a trello like layout */
     justify-content: start;
     gap: 10px
 }
@@ -100,8 +106,12 @@ section {
 
 h1 {
     font-size: larger;
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 20px;
+    grid-column: span 3;
+    /* i don't like the centered look for this, but here is the code */
+    /* display: flex;
+    justify-content: center; */
 }
 
 h2 {
@@ -115,5 +125,40 @@ h2 {
 
     100% {
         opacity: 1;
+    }
+}
+
+button {
+    border: 1px solid black;
+    background-color: lightgray;
+    box-shadow: 2px 2px darkgrey;
+    transition: all ease-in-out 50ms;
+    width: fit-content;
+}
+
+button:hover {
+    translate: -1px -1px;
+    box-shadow: 3px 3px darkgrey;
+}
+
+#main-form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        margin-top: 5px;
+        box-shadow: 3px 3px darkgray;
+    }
+    button:hover {
+        translate: -1px -1px;
+        box-shadow: 4px 4px darkgrey;
+    }
+
+    textarea,
+    input {
+        box-shadow: 3px 3px darkgray;
+        border: 1px solid grey;
+        margin: 5px 0px 5px 0px;
+        width: 250px;
     }
 }
