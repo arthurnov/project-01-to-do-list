@@ -22,10 +22,10 @@ function buildBoard() {
     clearForm();
 }
 
-function addNote(e) {
-    e.preventDefault();
+function addNote(event) {
+    event.preventDefault();
     let note = {};
-    for (const item of e.target) {
+    for (const item of event.target) {
         if (item.nodeName === "BUTTON") continue;
         // if (item.name === "due date") {
         //     console.log(item.value);
@@ -59,9 +59,13 @@ function drawSection(section) {
     let notes = "";
     for (let i = 0; i < list.length; i++) {
         notes += `<div class="container note"><div class="note-content">`;
+        let noteClass;
         for (const key in list[i]) {
             if (key === "due date") {
-                notes += `<span id="note-due-txt">due<br>by</span><span id="note-due-date">${list[i][key]}</span>`;
+                const nowDate = new Date();
+                const noteDate = new Date(list[i][key]);
+                noteClass = (+noteDate - +nowDate <= 86400000) ? "red-alert" : "still-time";
+                notes += `<span id="note-due-txt">due<br>date</span><span id="note-due-date">${noteDate.getDate()}/${noteDate.getMonth() + 1}/${noteDate.getFullYear()}</span>`;
                 continue;
             } else if (key === "due o'clock") {
                 notes += `<span id="note-due-time">${list[i][key]}</span>`;
@@ -73,7 +77,7 @@ function drawSection(section) {
         const nextButtonButton = (section === "completed") ? "" : `<button onclick="move('${section}', ${i}, '${nextList}')">${nextButtonText}</button>`;
         notes += `
             </div>
-            <div class="note-actions">
+            <div class="note-actions ${noteClass}">
                 <button class="delete-button" onclick="deleteNoteFromList('${i}', '${section}')">X</button>
                 ${nextButtonButton}
             </div>
